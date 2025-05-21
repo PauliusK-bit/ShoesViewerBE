@@ -13,6 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 
+const shoeAPIRoutes = require("./api/shoeRoutes");
+
+app.use("/api/shoes", shoeAPIRoutes);
+
 app.use(express.static("public"));
 
 app.locals.siteTitle = "My Website";
