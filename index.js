@@ -13,9 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.json());
 
-app.set("view engine", "ejs");
-app.set("views", path.join("views"));
-
 app.use(express.static("public"));
 
 app.locals.siteTitle = "My Website";
