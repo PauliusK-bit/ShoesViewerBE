@@ -14,8 +14,10 @@ app.use(cors());
 app.use(express.json());
 
 const shoeAPIRoutes = require("./api/shoeRoutes");
+const categoryAPIRoutes = require("./api/categoryRoutes");
 
 app.use("/api/shoes", shoeAPIRoutes);
+app.use("/api/categories", categoryAPIRoutes);
 
 app.use(express.static("public"));
 

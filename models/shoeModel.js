@@ -9,6 +9,11 @@ const shoeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  categoryId: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 const Shoe = mongoose.model("Shoes", shoeSchema);
