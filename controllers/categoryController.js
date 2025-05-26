@@ -1,4 +1,5 @@
 const Category = require("../models/categoryModel");
+const Shoe = require("../models/shoeModel");
 
 const createCategory = async (req, res) => {
   try {
@@ -34,8 +35,25 @@ const getCategoryById = async (req, res) => {
   }
 };
 
+const deleteCategory = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deletedCategory = await Category.findByIdAndDelete(id);
+
+    if (!deletedCategory) {
+      return res.status(404).send({ error: "Category Not found" });
+    }
+
+    res.send({ message: "Category was removed", data: deletedCategory });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
 module.exports = {
   createCategory,
   getCategories,
   getCategoryById,
+  deleteCategory,
 };

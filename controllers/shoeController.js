@@ -34,8 +34,28 @@ const getShoeById = async (req, res) => {
   }
 };
 
+const getShoesByCategory = async (req, res) => {
+  const { categoryId } = req.params;
+
+  try {
+    const shoes = await Shoe.find({ categoryId: categoryId });
+
+    if (!shoes || shoes.length === 0) {
+      return res
+        .status(404)
+        .send({ message: "No shoes found for this category" });
+    }
+
+    res.send(shoes);
+  } catch (error) {
+    console.error("Error fetching shoes by category:", error);
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};
+
 module.exports = {
   createShoe,
   getShoes,
   getShoeById,
+  getShoesByCategory,
 };
